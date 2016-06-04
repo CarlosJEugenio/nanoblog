@@ -1,6 +1,11 @@
 <h1> Listing Articles </h1>
 <%= link_to "New Article", new_article_path(@article) %>
-
+    <% if user_signed_in? %>
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+      <%= link_to('Edit user', edit_user_registration_path) %>
+    <% else %>
+      <%= link_to('Login', new_user_session_path)  %>
+    <% end %>
 
 <div>
     <% @articles.each do |article| %>
