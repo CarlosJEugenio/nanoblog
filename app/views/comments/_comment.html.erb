@@ -1,0 +1,18 @@
+<p>
+  <strong>Commenter:</strong>
+  <% if comment.commenter_id? %>
+    <% commenter_user = User.find(comment.commenter_id) %>
+    <%= link_to commenter_user.username %>
+  <% else %>
+    <%= comment.commenter %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= comment.body %>
+</p>
+
+<% if user_signed_in? && current_user.id == @article.creator %>
+ <%= link_to "Delete Comment", [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

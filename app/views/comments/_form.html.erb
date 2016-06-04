@@ -1,0 +1,19 @@
+<%= form_for([@article, @article.comments.build]) do |f| %>
+
+  <p>
+    <% if user_signed_in? %>
+      <%= f.hidden_field :commenter_id, value: current_user.id %>
+      <%= f.hidden_field :commenter, value:  current_user.username%>
+    <% else %>
+      <%= f.label :commenter %><br>
+      <%= f.text_field :commenter %>
+    <% end %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
